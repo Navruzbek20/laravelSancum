@@ -3,6 +3,7 @@
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LocusController;
+use App\Http\Controllers\LocusGroupController;
 use App\Http\Controllers\PopulationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,7 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::get('population', [PopulationController::class, 'getPopulation']);
     Route::delete('population/{id}', [PopulationController::class, 'deletePopulation']);
     Route::post('population/{id}', [PopulationController::class, 'getPopulationById']);
-    Route::posst('population/active/{id}', [PopulationController::class, 'setActive']);
+    Route::post('population/active/{id}', [PopulationController::class, 'setActive']);
 
     Route::post('locus',[LocusController::class, 'createLocus']);
     Route::put('locus/{id}',[LocusController::class, 'updateLocus']);
@@ -43,6 +44,13 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::delete('group/{id}', [GroupController::class, 'deleteGroup']);
     Route::post('group/{id}', [GroupController::class, 'getGroupById']);
     Route::post('group/active/{id}', [GroupController::class, 'setActive']);
+
+    Route::post('locus_group', [LocusGroupController::class, 'create']);    
+    Route::get('locus_group', [LocusGroupController::class, 'getLocusGroup']);
+    Route::get('locus_group/locus/{id}', [LocusGroupController::class, 'getLocusGroupByLocus']);
+    Route::get('locus_group/group/{id}', [LocusGroupController::class, 'getLocusGroupByGroup']);
+    Route::put('locus_group/{id}', [LocusGroupController::class, 'undate']);
+    Route::delete('locus_group/{id}', [LocusGroupController::class, 'delete']);
 
 
 });
