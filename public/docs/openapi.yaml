@@ -1,0 +1,265 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost/myproject/public'
+paths:
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/image:
+    post:
+      summary: ''
+      operationId: postApiImage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/register:
+    post:
+      summary: ''
+      operationId: postApiRegister
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/login:
+    get:
+      summary: ''
+      operationId: getApiLogin
+      description: ''
+      parameters: []
+      responses:
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Логин ва паролни киритинг.'
+                  error: true
+                properties:
+                  message:
+                    type: string
+                    example: 'Логин ва паролни киритинг.'
+                  error:
+                    type: boolean
+                    example: true
+      tags:
+        - Endpoints
+      security: []
+  /api/population:
+    post:
+      summary: "Aholi yozuvini yaratish\n\nYangi aholi yozuvini yaratadi."
+      operationId: aholiYozuviniYaratishYangiAholiYozuviniYaratadi
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 2
+                  name: Andijon
+                  status: active
+                properties:
+                  id:
+                    type: integer
+                    example: 2
+                  name:
+                    type: string
+                    example: Andijon
+                  status:
+                    type: string
+                    example: active
+      tags:
+        - Population
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Aholi nomi. Misol: Andijon'
+                  example: illo
+                  nullable: false
+                status:
+                  type: string
+                  description: 'Status (active/inactive). Misol: active'
+                  example: laboriosam
+                  nullable: false
+              required:
+                - name
+                - status
+      security: []
+    get:
+      summary: "Aholi ro‘yxati\n\nBarcha aholi yozuvlarini olish."
+      operationId: aholiRoyxatiBarchaAholiYozuvlariniOlish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    name: Toshkent
+                    status: active
+      tags:
+        - Population
+      security: []
+  '/api/population/{id}':
+    put:
+      summary: 'Aholi yozuvini yangilash'
+      operationId: aholiYozuviniYangilash
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: Namangan
+                  status: inactive
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Namangan
+                  status:
+                    type: string
+                    example: inactive
+      tags:
+        - Population
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Aholi nomi. Misol: Namangan'
+                  example: eaque
+                  nullable: false
+                status:
+                  type: string
+                  description: 'Status (active/inactive). Misol: inactive'
+                  example: et
+                  nullable: false
+              required:
+                - name
+                - status
+      security: []
+    delete:
+      summary: 'Aholi yozuvini o‘chirish'
+      operationId: aholiYozuviniOchirish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Aholi muvaffaqiyatli o‘chirildi'
+                properties:
+                  message:
+                    type: string
+                    example: 'Aholi muvaffaqiyatli o‘chirildi'
+      tags:
+        - Population
+      security: []
+    post:
+      summary: 'ID bo‘yicha aholi ma''lumotini olish'
+      operationId: iDBoyichaAholiMalumotiniOlish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: Toshkent
+                  status: active
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Toshkent
+                  status:
+                    type: string
+                    example: active
+      tags:
+        - Population
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Yangilanadigan aholi IDsi. Misol: 1'
+        example: 10
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: Population
+    description: ''
