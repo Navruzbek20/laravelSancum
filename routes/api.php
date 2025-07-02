@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrequencyController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LocusController;
@@ -51,6 +52,12 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::get('locus_group/group/{id}', [LocusGroupController::class, 'getLocusGroupByGroup']);
     Route::put('locus_group/{id}', [LocusGroupController::class, 'undate']);
     Route::delete('locus_group/{id}', [LocusGroupController::class, 'delete']);
+
+    Route::post('frequency',[FrequencyController::class, 'create']);
+    Route::get('frequency', [FrequencyController::class, 'index']);
+    Route::get('frequency/{id}', [FrequencyController::class, 'show']);
+    Route::put('frequency/{id}', [FrequencyController::class, 'update']);
+    Route::delete('frequency/{id}', [FrequencyController::class, 'delete']);
 
 
 });
