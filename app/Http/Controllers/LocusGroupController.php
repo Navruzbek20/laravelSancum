@@ -8,6 +8,20 @@ use Illuminate\Http\Request;
 
 class LocusGroupController extends Controller
 {
+    /**
+     * @group Locus-Group
+     * 
+     * Locus va Groupni bog‘lash
+     * 
+     * Yangi locus-group bog‘lanishini yaratish.
+     * 
+     * @bodyParam locus integer required Locus ID. Misol: 1
+     * @bodyParam group integer required Group ID. Misol: 2
+     * 
+     * @response 201 {
+     *   "message": "Malumot saqlandi"
+     * }
+     */
     public function create(Request $request)
     {
         $locus = $request->input('locus');
@@ -18,27 +32,96 @@ class LocusGroupController extends Controller
         $locusGroup->save();
         return response()->json(['message' => 'Malumot saqlandi'], 201);
     }
+
+    /**
+     * @group Locus-Group
+     * 
+     * Locus-Groupni o‘chirish
+     * 
+     * @urlParam id integer required O‘chiriladigan bog‘lanish IDsi. Misol: 5
+     * 
+     * @response 201 {
+     *   "message": "Malumot o‘chirildi"
+     * }
+     */
     public function delete($id)
     {
         $locusGroup = LocusGroup::find($id);
         $locusGroup->delete();
         return response()->json(['message' => 'Malumot o‘chirildi'], 201);
     }
+
+    /**
+     * @group Locus-Group
+     * 
+     * Barcha Locus-Group bog‘lanishlarini olish
+     * 
+     * @response 200 [
+     *   {
+     *     "id": 1,
+     *     "locus_id": 1,
+     *     "group_id": 2
+     *   }
+     * ]
+     */
     public function getLocusGroup()
     {
-        $locusGroup = LocusGroupResource::collection(LocusGroup::all());
-        return $locusGroup;
+        return LocusGroupResource::collection(LocusGroup::all());
     }
+
+    /**
+     * @group Locus-Group
+     * 
+     * Locus ID bo‘yicha Locus-Group bog‘lanishlarini olish
+     * 
+     * @urlParam id integer required Locus ID. Misol: 1
+     * 
+     * @response 200 [
+     *   {
+     *     "id": 1,
+     *     "locus_id": 1,
+     *     "group_id": 2
+     *   }
+     * ]
+     */
     public function getLocusGroupByLocus($id)
     {
-        $locusGroup = LocusGroupResource::collection(LocusGroup::where('locus_id', $id)->get());
-        return $locusGroup;
+        return LocusGroupResource::collection(LocusGroup::where('locus_id', $id)->get());
     }
+
+    /**
+     * @group Locus-Group
+     * 
+     * Group ID bo‘yicha Locus-Group bog‘lanishlarini olish
+     * 
+     * @urlParam id integer required Group ID. Misol: 2
+     * 
+     * @response 200 [
+     *   {
+     *     "id": 1,
+     *     "locus_id": 1,
+     *     "group_id": 2
+     *   }
+     * ]
+     */
     public function getLocusGroupByGroup($id)
     {
-        $locusGroup = LocusGroupResource::collection(LocusGroup::where('group_id', $id)->get());
-        return $locusGroup;
+        return LocusGroupResource::collection(LocusGroup::where('group_id', $id)->get());
     }
+
+    /**
+     * @group Locus-Group
+     * 
+     * Locus-Group bog‘lanishini yangilash
+     * 
+     * @urlParam id integer required Yangilanadigan bog‘lanish IDsi. Misol: 4
+     * @bodyParam locus integer required Locus ID. Misol: 1
+     * @bodyParam group integer required Group ID. Misol: 3
+     * 
+     * @response 201 {
+     *   "message": "Malumot saqlandi"
+     * }
+     */
     public function undate(Request $request, $id)
     {
         $locus = $request->input('locus');

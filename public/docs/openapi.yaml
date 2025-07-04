@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost/myproject/public'
+    url: 'http://localhost'
 paths:
   /api/user:
     get:
@@ -39,6 +39,25 @@ paths:
       tags:
         - Endpoints
       security: []
+  '/api/population/active/{id}':
+    post:
+      summary: ''
+      operationId: postApiPopulationActiveId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the active.'
+        example: ipsa
+        required: true
+        schema:
+          type: string
   /api/register:
     post:
       summary: ''
@@ -75,6 +94,860 @@ paths:
       tags:
         - Endpoints
       security: []
+  /api/frequency:
+    post:
+      summary: 'Yangi frekans yozuvini yaratish'
+      operationId: yangiFrekansYozuviniYaratish
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Maʼlumot saqlandi'
+                properties:
+                  message:
+                    type: string
+                    example: 'Maʼlumot saqlandi'
+      tags:
+        - Frequency
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                locus:
+                  type: integer
+                  description: 'Locus ID. Misol: 1'
+                  example: 5
+                  nullable: false
+                population:
+                  type: integer
+                  description: 'Population ID. Misol: 2'
+                  example: 2
+                  nullable: false
+                symbol:
+                  type: string
+                  description: 'Simvol. Misol: A'
+                  example: accusamus
+                  nullable: false
+                alel_name:
+                  type: string
+                  description: 'Alel nomi. Misol: A1'
+                  example: modi
+                  nullable: false
+                frequency:
+                  type: number
+                  description: 'Ehtimollik qiymati. Misol: 0.25'
+                  example: 22467160.617918
+                  nullable: false
+              required:
+                - locus
+                - population
+                - symbol
+                - alel_name
+                - frequency
+      security: []
+    get:
+      summary: 'Barcha frekans yozuvlarini olish'
+      operationId: barchaFrekansYozuvlariniOlish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    locus_id: 1
+                    population_id: 2
+                    symbol: A
+                    alel_name: A1
+                    frequency: 0.25
+      tags:
+        - Frequency
+      security: []
+  '/api/frequency/{id}':
+    get:
+      summary: 'ID bo‘yicha frekans yozuvini ko‘rish'
+      operationId: iDBoyichaFrekansYozuviniKorish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  locus_id: 1
+                  population_id: 2
+                  symbol: A
+                  alel_name: A1
+                  frequency: 0.25
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  locus_id:
+                    type: integer
+                    example: 1
+                  population_id:
+                    type: integer
+                    example: 2
+                  symbol:
+                    type: string
+                    example: A
+                  alel_name:
+                    type: string
+                    example: A1
+                  frequency:
+                    type: number
+                    example: 0.25
+      tags:
+        - Frequency
+      security: []
+    put:
+      summary: 'Frekans yozuvini yangilash'
+      operationId: frekansYozuviniYangilash
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Maʼlumot yangilandi'
+                properties:
+                  message:
+                    type: string
+                    example: 'Maʼlumot yangilandi'
+      tags:
+        - Frequency
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                locus:
+                  type: integer
+                  description: 'Locus ID. Misol: 1'
+                  example: 11
+                  nullable: false
+                population:
+                  type: integer
+                  description: 'Population ID. Misol: 2'
+                  example: 3
+                  nullable: false
+                symbol:
+                  type: string
+                  description: 'Simvol. Misol: A'
+                  example: quo
+                  nullable: false
+                alel_name:
+                  type: string
+                  description: 'Alel nomi. Misol: A1'
+                  example: repellendus
+                  nullable: false
+                frequency:
+                  type: number
+                  description: 'Ehtimollik qiymati. Misol: 0.25'
+                  example: 50.0
+                  nullable: false
+              required:
+                - locus
+                - population
+                - symbol
+                - alel_name
+                - frequency
+      security: []
+    delete:
+      summary: 'Frekans yozuvini o‘chirish'
+      operationId: frekansYozuviniOchirish
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Malumot o‘chirildi'
+                properties:
+                  message:
+                    type: string
+                    example: 'Malumot o‘chirildi'
+      tags:
+        - Frequency
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'ID. Misol: 1'
+        example: 8
+        required: true
+        schema:
+          type: integer
+  /api/group:
+    post:
+      summary: 'Yangi guruh yaratish'
+      operationId: yangiGuruhYaratish
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: '13-marker group'
+                  status: true
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: '13-marker group'
+                  status:
+                    type: boolean
+                    example: true
+      tags:
+        - Group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Guruh nomi. Misol: 13-marker group'
+                  example: totam
+                  nullable: false
+                status:
+                  type: boolean
+                  description: 'optional Holati. Misol: true'
+                  example: true
+                  nullable: false
+              required:
+                - name
+      security: []
+    get:
+      summary: 'Barcha guruhlarni olish'
+      operationId: barchaGuruhlarniOlish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    name: 'Group A'
+                    status: true
+      tags:
+        - Group
+      security: []
+  '/api/group/{id}':
+    put:
+      summary: 'Guruhni yangilash'
+      operationId: guruhniYangilash
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: X-group
+                  status: false
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: X-group
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - Group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Yangi nomi. Misol: X-group'
+                  example: qui
+                  nullable: false
+                status:
+                  type: boolean
+                  description: 'Yangi holati. Misol: false'
+                  example: true
+                  nullable: false
+              required:
+                - name
+                - status
+      security: []
+    delete:
+      summary: 'Guruhni o‘chirish'
+      operationId: guruhniOchirish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Guruh muvaffaqiyatli o‘chirildi'
+                properties:
+                  message:
+                    type: string
+                    example: 'Guruh muvaffaqiyatli o‘chirildi'
+      tags:
+        - Group
+      security: []
+    post:
+      summary: 'ID bo‘yicha guruhni olish'
+      operationId: iDBoyichaGuruhniOlish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: 'Group A'
+                  status: true
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: 'Group A'
+                  status:
+                    type: boolean
+                    example: true
+      tags:
+        - Group
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Guruh IDsi. Misol: 1'
+        example: 6
+        required: true
+        schema:
+          type: integer
+  '/api/group/active/{id}':
+    post:
+      summary: 'Guruh statusini faollashtirish yoki o‘chirish'
+      operationId: guruhStatusiniFaollashtirishYokiOchirish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: 'Group A'
+                  status: false
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: 'Group A'
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - Group
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Guruh IDsi. Misol: 1'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  /api/locus:
+    post:
+      summary: 'Yangi Locus yaratish'
+      operationId: yangiLocusYaratish
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 2
+                  name: D3S1358
+                  status: true
+                properties:
+                  id:
+                    type: integer
+                    example: 2
+                  name:
+                    type: string
+                    example: D3S1358
+                  status:
+                    type: boolean
+                    example: true
+      tags:
+        - Locus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Locus nomi. Misol: D3S1358'
+                  example: excepturi
+                  nullable: false
+                status:
+                  type: boolean
+                  description: 'optional Holati (true/false). Misol: true'
+                  example: true
+                  nullable: false
+              required:
+                - name
+      security: []
+    get:
+      summary: 'Barcha Locus yozuvlarini olish'
+      operationId: barchaLocusYozuvlariniOlish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    name: D3S1358
+                    status: true
+      tags:
+        - Locus
+      security: []
+  '/api/locus/{id}':
+    put:
+      summary: 'Locusni yangilash'
+      operationId: locusniYangilash
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: D3S1358
+                  status: true
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: D3S1358
+                  status:
+                    type: boolean
+                    example: true
+      tags:
+        - Locus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Yangi nomi. Misol: D3S1358'
+                  example: facilis
+                  nullable: false
+                status:
+                  type: boolean
+                  description: 'Yangi status. Misol: true'
+                  example: true
+                  nullable: false
+              required:
+                - name
+                - status
+      security: []
+    delete:
+      summary: 'Locusni o‘chirish'
+      operationId: locusniOchirish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Locus muvaffaqiyatli o‘chirildi'
+                properties:
+                  message:
+                    type: string
+                    example: 'Locus muvaffaqiyatli o‘chirildi'
+      tags:
+        - Locus
+      security: []
+    post:
+      summary: 'ID bo‘yicha Locusni olish'
+      operationId: iDBoyichaLocusniOlish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: D3S1358
+                  status: true
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: D3S1358
+                  status:
+                    type: boolean
+                    example: true
+      tags:
+        - Locus
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Locus ID. Misol: 1'
+        example: 15
+        required: true
+        schema:
+          type: integer
+  '/api/locus/active/{id}':
+    post:
+      summary: 'Locusni statusini aktiv/inaktiv qilish'
+      operationId: locusniStatusiniAktivinaktivQilish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: D3S1358
+                  status: false
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: D3S1358
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - Locus
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Locus ID. Misol: 1'
+        example: 14
+        required: true
+        schema:
+          type: integer
+  /api/locus_group:
+    post:
+      summary: "Locus va Groupni bog‘lash\n\nYangi locus-group bog‘lanishini yaratish."
+      operationId: locusVaGroupniBoglashYangiLocusGroupBoglanishiniYaratish
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Malumot saqlandi'
+                properties:
+                  message:
+                    type: string
+                    example: 'Malumot saqlandi'
+      tags:
+        - Locus-Group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                locus:
+                  type: integer
+                  description: 'Locus ID. Misol: 1'
+                  example: 18
+                  nullable: false
+                group:
+                  type: integer
+                  description: 'Group ID. Misol: 2'
+                  example: 14
+                  nullable: false
+              required:
+                - locus
+                - group
+      security: []
+    get:
+      summary: 'Barcha Locus-Group bog‘lanishlarini olish'
+      operationId: barchaLocusGroupBoglanishlariniOlish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    locus_id: 1
+                    group_id: 2
+      tags:
+        - Locus-Group
+      security: []
+  '/api/locus_group/locus/{id}':
+    get:
+      summary: 'Locus ID bo‘yicha Locus-Group bog‘lanishlarini olish'
+      operationId: locusIDBoyichaLocusGroupBoglanishlariniOlish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    locus_id: 1
+                    group_id: 2
+      tags:
+        - Locus-Group
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Locus ID. Misol: 1'
+        example: 13
+        required: true
+        schema:
+          type: integer
+  '/api/locus_group/group/{id}':
+    get:
+      summary: 'Group ID bo‘yicha Locus-Group bog‘lanishlarini olish'
+      operationId: groupIDBoyichaLocusGroupBoglanishlariniOlish
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    locus_id: 1
+                    group_id: 2
+      tags:
+        - Locus-Group
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Group ID. Misol: 2'
+        example: 8
+        required: true
+        schema:
+          type: integer
+  '/api/locus_group/{id}':
+    put:
+      summary: 'Locus-Group bog‘lanishini yangilash'
+      operationId: locusGroupBoglanishiniYangilash
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Malumot saqlandi'
+                properties:
+                  message:
+                    type: string
+                    example: 'Malumot saqlandi'
+      tags:
+        - Locus-Group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                locus:
+                  type: integer
+                  description: 'Locus ID. Misol: 1'
+                  example: 18
+                  nullable: false
+                group:
+                  type: integer
+                  description: 'Group ID. Misol: 3'
+                  example: 8
+                  nullable: false
+              required:
+                - locus
+                - group
+      security: []
+    delete:
+      summary: 'Locus-Groupni o‘chirish'
+      operationId: locusGroupniOchirish
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Malumot o‘chirildi'
+                properties:
+                  message:
+                    type: string
+                    example: 'Malumot o‘chirildi'
+      tags:
+        - Locus-Group
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Yangilanadigan bog‘lanish IDsi. Misol: 4'
+        example: 12
+        required: true
+        schema:
+          type: integer
   /api/population:
     post:
       summary: "Aholi yozuvini yaratish\n\nYangi aholi yozuvini yaratadi."
@@ -114,12 +987,12 @@ paths:
                 name:
                   type: string
                   description: 'Aholi nomi. Misol: Andijon'
-                  example: illo
+                  example: ex
                   nullable: false
                 status:
                   type: string
                   description: 'Status (active/inactive). Misol: active'
-                  example: laboriosam
+                  example: harum
                   nullable: false
               required:
                 - name
@@ -186,7 +1059,7 @@ paths:
                 name:
                   type: string
                   description: 'Aholi nomi. Misol: Namangan'
-                  example: eaque
+                  example: voluptas
                   nullable: false
                 status:
                   type: string
@@ -252,13 +1125,25 @@ paths:
         in: path
         name: id
         description: 'Yangilanadigan aholi IDsi. Misol: 1'
-        example: 10
+        example: 5
         required: true
         schema:
           type: integer
 tags:
   -
     name: Endpoints
+    description: ''
+  -
+    name: Frequency
+    description: ''
+  -
+    name: Group
+    description: ''
+  -
+    name: Locus
+    description: ''
+  -
+    name: Locus-Group
     description: ''
   -
     name: Population

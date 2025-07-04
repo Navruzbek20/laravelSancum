@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CodeController;
 use App\Http\Controllers\FrequencyController;
+use App\Http\Controllers\GenomItemController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LocusController;
@@ -9,7 +11,7 @@ use App\Http\Controllers\PopulationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-
+use App\Models\Code;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -59,6 +61,12 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::put('frequency/{id}', [FrequencyController::class, 'update']);
     Route::delete('frequency/{id}', [FrequencyController::class, 'delete']);
 
+    Route::post('code',[CodeController::class, 'create']);
+    Route::delete('code/{id}', [CodeController::class, 'delete']);
+    Route::get('code', [CodeController::class, 'index']);
+    Route::get('code/{id}', [CodeController::class, 'show']);
+
+    Route::post('genom_item',[GenomItemController::class,'storeFullGenomData']);
 
 });
 

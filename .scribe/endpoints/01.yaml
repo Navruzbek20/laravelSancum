@@ -29,7 +29,7 @@ endpoints:
         name: name
         description: 'Aholi nomi. Misol: Andijon'
         required: true
-        example: illo
+        example: ex
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -39,15 +39,15 @@ endpoints:
         name: status
         description: 'Status (active/inactive). Misol: active'
         required: true
-        example: laboriosam
+        example: harum
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      name: illo
-      status: laboriosam
+      name: ex
+      status: harum
     fileParameters: []
     responses:
       -
@@ -88,14 +88,14 @@ endpoints:
         name: id
         description: 'Yangilanadigan aholi IDsi. Misol: 1'
         required: true
-        example: 10
+        example: 5
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 10
+      id: 5
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -103,7 +103,7 @@ endpoints:
         name: name
         description: 'Aholi nomi. Misol: Namangan'
         required: true
-        example: eaque
+        example: voluptas
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -120,7 +120,7 @@ endpoints:
         nullable: false
         custom: []
     cleanBodyParameters:
-      name: eaque
+      name: voluptas
       status: et
     fileParameters: []
     responses:
@@ -208,14 +208,14 @@ endpoints:
         name: id
         description: 'O‘chiriladigan aholi IDsi. Misol: 1'
         required: true
-        example: 17
+        example: 5
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 17
+      id: 5
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -258,14 +258,14 @@ endpoints:
         name: id
         description: 'Majburiy. Aholi yozuvi IDsi. Misol: 1'
         required: false
-        example: 9
+        example: 14
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 9
+      id: 14
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

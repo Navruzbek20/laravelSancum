@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/localhost\/myproject\/public"
+            "value": "http:\/\/localhost"
         }
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "656e5f8a-a5b6-41ac-a68b-cd4e45537f47",
+        "_postman_id": "a54b2d6d-a736-41e0-b376-9c84a5a8baaf",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -75,6 +75,42 @@
                             "path": "api\/image",
                             "query": [],
                             "raw": "{{baseUrl}}\/api\/image"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/population\/active\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/population\/active\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/population\/active\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "ipsa",
+                                    "description": "The ID of the active."
+                                }
+                            ]
                         },
                         "method": "POST",
                         "header": [
@@ -182,6 +218,979 @@
             ]
         },
         {
+            "name": "Frequency",
+            "description": "",
+            "item": [
+                {
+                    "name": "Yangi frekans yozuvini yaratish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/frequency",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/frequency"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"locus\":5,\"population\":2,\"symbol\":\"accusamus\",\"alel_name\":\"modi\",\"frequency\":22467160.617918}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n  \"message\": \"Ma\u02bclumot saqlandi\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Barcha frekans yozuvlarini olish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/frequency",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/frequency"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "[\n  {\n    \"id\": 1,\n    \"locus_id\": 1,\n    \"population_id\": 2,\n    \"symbol\": \"A\",\n    \"alel_name\": \"A1\",\n    \"frequency\": 0.25\n  }\n]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "ID bo\u2018yicha frekans yozuvini ko\u2018rish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/frequency\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/frequency\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "8",
+                                    "description": "ID. Misol: 1"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": 1,\n  \"locus_id\": 1,\n  \"population_id\": 2,\n  \"symbol\": \"A\",\n  \"alel_name\": \"A1\",\n  \"frequency\": 0.25\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Frekans yozuvini yangilash",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/frequency\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/frequency\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "15",
+                                    "description": "Frekans IDsi. Misol: 1"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"locus\":11,\"population\":3,\"symbol\":\"quo\",\"alel_name\":\"repellendus\",\"frequency\":50}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"Ma\u02bclumot yangilandi\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Frekans yozuvini o\u2018chirish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/frequency\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/frequency\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "6",
+                                    "description": "O\u2018chiriladigan ID. Misol: 3"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n  \"message\": \"Malumot o\u2018chirildi\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Group",
+            "description": "",
+            "item": [
+                {
+                    "name": "Yangi guruh yaratish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/group",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/group"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"totam\",\"status\":true}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n  \"id\": 1,\n  \"name\": \"13-marker group\",\n  \"status\": true\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Guruhni yangilash",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/group\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/group\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "6",
+                                    "description": "Guruh IDsi. Misol: 1"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"qui\",\"status\":true}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": 1,\n  \"name\": \"X-group\",\n  \"status\": false\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Barcha guruhlarni olish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/group",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/group"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Group A\",\n    \"status\": true\n  }\n]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Guruhni o\u2018chirish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/group\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/group\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "5",
+                                    "description": "Guruh IDsi. Misol: 1"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"Guruh muvaffaqiyatli o\u2018chirildi\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "ID bo\u2018yicha guruhni olish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/group\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/group\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "3",
+                                    "description": "Guruh IDsi. Misol: 1"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": 1,\n  \"name\": \"Group A\",\n  \"status\": true\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Guruh statusini faollashtirish yoki o\u2018chirish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/group\/active\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/group\/active\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "3",
+                                    "description": "Guruh IDsi. Misol: 1"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": 1,\n  \"name\": \"Group A\",\n  \"status\": false\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Locus",
+            "description": "",
+            "item": [
+                {
+                    "name": "Yangi Locus yaratish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locus",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locus"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"excepturi\",\"status\":true}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n  \"id\": 2,\n  \"name\": \"D3S1358\",\n  \"status\": true\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Locusni yangilash",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locus\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locus\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "15",
+                                    "description": "Locus ID. Misol: 1"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"facilis\",\"status\":true}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": 1,\n  \"name\": \"D3S1358\",\n  \"status\": true\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Barcha Locus yozuvlarini olish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locus",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locus"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"D3S1358\",\n    \"status\": true\n  }\n]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Locusni o\u2018chirish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locus\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locus\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "7",
+                                    "description": "O\u2018chiriladigan ID. Misol: 1"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"Locus muvaffaqiyatli o\u2018chirildi\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "ID bo\u2018yicha Locusni olish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locus\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locus\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Locus ID. Misol: 1"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": 1,\n  \"name\": \"D3S1358\",\n  \"status\": true\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Locusni statusini aktiv\/inaktiv qilish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locus\/active\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locus\/active\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "14",
+                                    "description": "Locus ID. Misol: 1"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": 1,\n  \"name\": \"D3S1358\",\n  \"status\": false\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Locus-Group",
+            "description": "",
+            "item": [
+                {
+                    "name": "Locus va Groupni bog\u2018lash\n\nYangi locus-group bog\u2018lanishini yaratish.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locus_group",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locus_group"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"locus\":18,\"group\":14}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n  \"message\": \"Malumot saqlandi\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Barcha Locus-Group bog\u2018lanishlarini olish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locus_group",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locus_group"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "[\n  {\n    \"id\": 1,\n    \"locus_id\": 1,\n    \"group_id\": 2\n  }\n]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Locus ID bo\u2018yicha Locus-Group bog\u2018lanishlarini olish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locus_group\/locus\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locus_group\/locus\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "13",
+                                    "description": "Locus ID. Misol: 1"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "[\n  {\n    \"id\": 1,\n    \"locus_id\": 1,\n    \"group_id\": 2\n  }\n]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Group ID bo\u2018yicha Locus-Group bog\u2018lanishlarini olish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locus_group\/group\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locus_group\/group\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "8",
+                                    "description": "Group ID. Misol: 2"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "[\n  {\n    \"id\": 1,\n    \"locus_id\": 1,\n    \"group_id\": 2\n  }\n]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Locus-Group bog\u2018lanishini yangilash",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locus_group\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locus_group\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "12",
+                                    "description": "Yangilanadigan bog\u2018lanish IDsi. Misol: 4"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"locus\":18,\"group\":8}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n  \"message\": \"Malumot saqlandi\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Locus-Groupni o\u2018chirish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locus_group\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locus_group\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "17",
+                                    "description": "O\u2018chiriladigan bog\u2018lanish IDsi. Misol: 5"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n  \"message\": \"Malumot o\u2018chirildi\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Population",
             "description": "",
             "item": [
@@ -207,7 +1216,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"illo\",\"status\":\"laboriosam\"}"
+                            "raw": "{\"name\":\"ex\",\"status\":\"harum\"}"
                         },
                         "description": "",
                         "auth": {
@@ -235,7 +1244,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "10",
+                                    "value": "5",
                                     "description": "Yangilanadigan aholi IDsi. Misol: 1"
                                 }
                             ]
@@ -253,7 +1262,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"eaque\",\"status\":\"et\"}"
+                            "raw": "{\"name\":\"voluptas\",\"status\":\"et\"}"
                         },
                         "description": "",
                         "auth": {
@@ -316,7 +1325,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "17",
+                                    "value": "5",
                                     "description": "O\u2018chiriladigan aholi IDsi. Misol: 1"
                                 }
                             ]
@@ -359,7 +1368,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "9",
+                                    "value": "14",
                                     "description": "Majburiy. Aholi yozuvi IDsi. Misol: 1"
                                 }
                             ]
