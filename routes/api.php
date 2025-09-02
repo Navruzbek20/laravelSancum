@@ -24,7 +24,9 @@ use App\Models\Code;
 */
 
 Route::middleware("auth:sanctum")->group(function () {
-    Route::get('user', [UserController::class, 'user']);
+    Route::get('users', [UserController::class, 'user']);
+    Route::put('users/{id}',[UserController::class,'update']);
+    Route::delete('users/{id}',[UserController::class,'destroy']);
     Route::post('image', [ImageController::class, 'createImage']);
 
     Route::post('population', [PopulationController::class, 'createPopulation']);
@@ -48,7 +50,7 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::post('group/{id}', [GroupController::class, 'getGroupById']);
     Route::post('group/active/{id}', [GroupController::class, 'setActive']);
 
-    Route::post('locus_group', [LocusGroupController::class, 'create']);    
+    Route::post('locus_group', [LocusGroupController::class, 'create']);
     Route::get('locus_group', [LocusGroupController::class, 'getLocusGroup']);
     Route::get('locus_group/locus/{id}', [LocusGroupController::class, 'getLocusGroupByLocus']);
     Route::get('locus_group/group/{id}', [LocusGroupController::class, 'getLocusGroupByGroup']);
@@ -71,6 +73,6 @@ Route::middleware("auth:sanctum")->group(function () {
 });
 
 Route::post('register', [UserController::class, 'register']);
-Route::get('login', [UserController::class, 'login']);
+Route::post('login', [UserController::class, 'login']);
 
 

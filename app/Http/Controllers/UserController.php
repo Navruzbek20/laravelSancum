@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -40,6 +41,47 @@ class UserController extends Controller
         }
     }
     public function user(){
-        return User::get()->all();
+
+        return UserResource::collection(User::paginate(env('PG')));
+
+    }
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not found'
+            ], 404);
+        }
+
+        $user->delete();
+
+        return response()->json([
+            'message' => 'User deleted successfully'
+        ], 200);
+    }
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not found'
+            ], 404);
+        }
+
+        $user->update([
+            'name' => $request->input('name'),
+            'username' => $request->input('username'),
+            // password bo'sh kelmaganida yangilaymiz
+            'password' => $request->filled('password')
+                ? Hash::make($request->input('password'))
+                : $user->password,
+        ]);
+
+        return response()->json([
+            'message' => 'User updated successfully',
+        ], 200);
     }
 }

@@ -39,7 +39,7 @@ class CodeController extends Controller
     }
     public function index()
     {
-        return CodeResource::collection(Code::all());
+        return CodeResource::collection(Code::all())->paginate(env('PG'));
    
     }
 }
