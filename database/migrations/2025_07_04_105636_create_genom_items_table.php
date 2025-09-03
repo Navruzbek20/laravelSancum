@@ -15,18 +15,18 @@ return new class extends Migration
     {
         Schema::create('genom_items', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('gemon_id');
-            $table->bigInteger('locus_id');
-            $table->double('a1');
-            $table->double('a2');
-            $table->double('a3');
-            $table->double('a4');
-            $table->double('a5');
-            $table->double('a6');
-            $table->double('a7');
-            $table->double('a8');
-            $table->double('a9');
-            $table->boolean('status')->default(0);
+            $table->unsignedBigInteger('genom_id');
+            $table->unsignedBigInteger('locus_id');
+            $table->string('a1')->nullable();
+            $table->string('a2')->nullable();
+            $table->string('a3')->nullable();
+            $table->string('a4')->nullable();
+            $table->string('a5')->nullable();
+            $table->string('a6')->nullable();
+            $table->string('a7')->nullable();
+            $table->string('a8')->nullable();
+            $table->string('a9')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

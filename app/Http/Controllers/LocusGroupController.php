@@ -10,14 +10,14 @@ class LocusGroupController extends Controller
 {
     /**
      * @group Locus-Group
-     * 
+     *
      * Locus va Groupni bog‘lash
-     * 
+     *
      * Yangi locus-group bog‘lanishini yaratish.
-     * 
+     *
      * @bodyParam locus integer required Locus ID. Misol: 1
      * @bodyParam group integer required Group ID. Misol: 2
-     * 
+     *
      * @response 201 {
      *   "message": "Malumot saqlandi"
      * }
@@ -35,11 +35,11 @@ class LocusGroupController extends Controller
 
     /**
      * @group Locus-Group
-     * 
+     *
      * Locus-Groupni o‘chirish
-     * 
+     *
      * @urlParam id integer required O‘chiriladigan bog‘lanish IDsi. Misol: 5
-     * 
+     *
      * @response 201 {
      *   "message": "Malumot o‘chirildi"
      * }
@@ -53,9 +53,9 @@ class LocusGroupController extends Controller
 
     /**
      * @group Locus-Group
-     * 
+     *
      * Barcha Locus-Group bog‘lanishlarini olish
-     * 
+     *
      * @response 200 [
      *   {
      *     "id": 1,
@@ -66,16 +66,16 @@ class LocusGroupController extends Controller
      */
     public function getLocusGroup()
     {
-        return LocusGroupResource::collection(LocusGroup::all());
+        return LocusGroupResource::collection(LocusGroup::paginate(env('PG')));
     }
 
     /**
      * @group Locus-Group
-     * 
+     *
      * Locus ID bo‘yicha Locus-Group bog‘lanishlarini olish
-     * 
+     *
      * @urlParam id integer required Locus ID. Misol: 1
-     * 
+     *
      * @response 200 [
      *   {
      *     "id": 1,
@@ -91,11 +91,11 @@ class LocusGroupController extends Controller
 
     /**
      * @group Locus-Group
-     * 
+     *
      * Group ID bo‘yicha Locus-Group bog‘lanishlarini olish
-     * 
+     *
      * @urlParam id integer required Group ID. Misol: 2
-     * 
+     *
      * @response 200 [
      *   {
      *     "id": 1,
@@ -111,13 +111,13 @@ class LocusGroupController extends Controller
 
     /**
      * @group Locus-Group
-     * 
+     *
      * Locus-Group bog‘lanishini yangilash
-     * 
+     *
      * @urlParam id integer required Yangilanadigan bog‘lanish IDsi. Misol: 4
      * @bodyParam locus integer required Locus ID. Misol: 1
      * @bodyParam group integer required Group ID. Misol: 3
-     * 
+     *
      * @response 201 {
      *   "message": "Malumot saqlandi"
      * }

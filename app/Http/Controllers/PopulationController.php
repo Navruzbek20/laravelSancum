@@ -41,7 +41,8 @@ class PopulationController extends Controller
      * }
      */
     public function getPopulationById($id){
-        return PopulationResource::collection(Population::find($id));
+        $populaton = Population::find($id);
+        return new PopulationResource($populaton);
 
     }
 

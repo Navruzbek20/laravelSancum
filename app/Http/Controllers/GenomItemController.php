@@ -12,6 +12,21 @@ class GenomItemController extends Controller
 {
     public function storeFullGenomData(Request $request)
 {
+    try {
+        $request->validate([
+            'locus_group_id' => 'required|integer',
+            'items' => 'required|array',
+            'items.*.locus_id' => 'required|integer',
+            'items.*.a1' => 'required|string',
+            'items.*.a2' => 'required|string',
+            'items.*.a3' => 'required|string',
+            'items.*.a4' => 'required|string',
+            'items.*.a5' => 'required|string',
+            'items.*.a6' => 'required|string',
+            'items.*.a7' => 'required|string',
+            'items.*.a8' => 'required|string',
+            'items.*.a9' => 'required|string'
+        ]);
     // 1. Codes jadvaliga saqlash
     $code = new Code();
     $code->name = Str::random(30); // 30 xonali random kod
@@ -49,5 +64,11 @@ class GenomItemController extends Controller
         'code_id' => $code->id,
         'genom_id' => $genom->id
     ], 201);
+} catch (\Exception $e) {
+    return response()->json([
+        'message' => 'Xatolik yuz berdi',
+        'error' => $e->getMessage()
+    ], 500);
+}
 }
 }

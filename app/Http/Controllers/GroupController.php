@@ -70,7 +70,7 @@ class GroupController extends Controller
      */
     public function getGroup()
     {
-        return GroupResource::collection(Group::all());
+        return GroupResource::collection(Group::paginate(env('PG')));
     }
 
     /**
