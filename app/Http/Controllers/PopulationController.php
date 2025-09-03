@@ -111,7 +111,7 @@ class PopulationController extends Controller
     }
     public function setActive($id){
         $population = Population::find($id);
-        $population->status = !$population->status;
+        $population->active = !$population->active;
         $population->save();
         return $population;
     }

@@ -7,6 +7,8 @@ use App\Models\Genom;
 use App\Models\GenomItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
 
 class GenomItemController extends Controller
 {
@@ -44,7 +46,7 @@ class GenomItemController extends Controller
 
     foreach ($items as $item) {
         $genomItem = new GenomItem();
-        $genomItem->gemon_id = $genom->id; // Genomdan olingan id
+        $genomItem->genom_id = $genom->id; // Genomdan olingan id
         $genomItem->locus_id = $item['locus_id'];
         $genomItem->a1 = $item['a1'];
         $genomItem->a2 = $item['a2'];
@@ -71,4 +73,92 @@ class GenomItemController extends Controller
     ], 500);
 }
 }
+
+public function storeFullGenomDocument(Request $request)
+{
+    try {
+        // 1. Validatsiya
+        $request->validate([
+            'genom_id' => 'required|integer',
+            'document' => 'required|file|mimes:txt|max:2048'
+        ]);
+
+        // 2. Faylni o'qish
+        $file = $request->file('document');
+        $fileContent = file_get_contents($file->getRealPath());
+        $lines = explode("\n", $fileContent);
+
+        // 3. Ma'lumotlarni ajratish
+        $sampleGroups = [];
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if (empty($line)) continue;
+
+            $columns = preg_split('/\s+/', $line);
+            if (count($columns) >= 3) {
+                $sampleName = $columns[0];
+                $locusId = $columns[2];
+                $alleles = array_slice($columns, 3, 9);
+
+                $sampleGroups[$sampleName][] = [
+                    'locus_id' => $locusId,
+                    'alleles' => $alleles
+                ];
+            }
+        }
+
+        // 4. Saqlash
+        foreach ($sampleGroups as $sampleName => $data) {
+            $code = new Code();
+            $code->name = Str::random(30);
+            $code->status = 1;
+            $code->save();
+
+            $genom = new Genom();
+            $genom->code_id = $code->id;
+            $genom->locus_group_id = $request->input('genom_id');
+            $genom->sample_name = $sampleName;
+            $genom->document_path = null;
+            $genom->save();
+
+            foreach ($data as $item) {
+                $genomItem = new GenomItem();
+                $genomItem->genom_id = $genom->id;
+                $genomItem->locus_id = $item['locus_id'];
+
+                for ($i = 1; $i <= 9; $i++) {
+                    $allelValue = isset($item['alleles'][$i - 1]) ? $item['alleles'][$i - 1] : null;
+                    $genomItem->{'a' . $i} = $allelValue;
+                }
+
+                $genomItem->status = 1;
+                $genomItem->save();
+            }
+        }
+
+        return response()->json([
+            'message' => 'Muvaffaqiyatli saqlandi',
+            'samples_processed' => count($sampleGroups)
+        ], 201);
+
+    } catch (ValidationException $e) {
+        return response()->json([
+            'message' => 'Validatsiya xatosi',
+            'errors' => $e->errors()
+        ], 422);
+
+    } catch (\Exception $e) {
+        // MAJBURIY XATO KO'RSATISH
+        return response()->json([
+            'message' => 'XATOLIK ANIQLANDI',
+            'error_message' => $e->getMessage(),
+            'error_file' => $e->getFile(),
+            'error_line' => $e->getLine(),
+            'error_trace' => $e->getTraceAsString()
+        ], 500);
+    }
+}
+
+
+
 }

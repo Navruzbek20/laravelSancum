@@ -84,4 +84,11 @@ class UserController extends Controller
             'message' => 'User updated successfully',
         ], 200);
     }
+    public function setActive($id){
+        $user = User::find($id);
+        $user->active = ! $user->active;
+        $user->save();
+        return  $user;
+    }
+
 }

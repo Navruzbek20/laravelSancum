@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->bigInteger('region_id');
-            $table->boolean('status')->default(0);
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }

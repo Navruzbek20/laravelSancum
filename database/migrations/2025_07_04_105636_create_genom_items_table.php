@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('a7')->nullable();
             $table->string('a8')->nullable();
             $table->string('a9')->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
     }

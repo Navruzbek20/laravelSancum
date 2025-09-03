@@ -125,7 +125,7 @@ class GroupController extends Controller
     public function setActive($id)
     {
         $group = Group::find($id);
-        $group->status = !$group->status;
+        $group->active = !$group->active;
         $group->save();
         return $group;
     }

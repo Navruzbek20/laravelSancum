@@ -125,7 +125,7 @@ class LocusController extends Controller
     public function setActive($id)
     {
         $row = Locus::find($id);
-        $row->status = !$row->status;
+        $row->active = !$row->active;
         $row->save();
         return new LocusResource($row);
     }
