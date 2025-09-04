@@ -26,8 +26,8 @@ class FrequencyController extends Controller
     public function create(Request $request)
     {
         Frequency::create([
-            'locus_id' => $request->locus,
-            'population_id' => $request->population,
+            'locus_id' => $request->locus_id,
+            'population_id' => $request->population_id,
             'symbol' => $request->symbol,
             'alel_name' => $request->alel_name,
             'frequency' => $request->frequency
@@ -126,6 +126,6 @@ class FrequencyController extends Controller
     public function index()
     {
         $frequencies = FrequencyResource::collection(Frequency::paginate(env('PG')));
-        return response()->json($frequencies);
+        return $frequencies;
     }
 }

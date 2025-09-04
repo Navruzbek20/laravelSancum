@@ -26,6 +26,9 @@ class PopulationController extends Controller
     public function getPopulation(){
         return PopulationResource::collection(Population::paginate(env('PG')));
     }
+    public function getAllPopulation(){
+        return PopulationResource::collection(Population::all());
+    }
 
     /**
      * @group Population
@@ -65,7 +68,7 @@ class PopulationController extends Controller
     public function createPopulation(Request $request){
         $population = new Population();
         $population->name = $request->name;
-        $population->status = $request->status ?? false;
+        $population->active = $request->active ?? false;
         $population->save();
         return $population;
     }
@@ -88,7 +91,7 @@ class PopulationController extends Controller
     public function updatePopulation(Request $request, $id){
         $population = Population::find($id);
         $population->name = $request->name;
-        $population->status = $request->status ?? false;
+        $population->active = $request->active ?? false;
         $population->save();
         return $population;
     }

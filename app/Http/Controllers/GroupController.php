@@ -26,7 +26,7 @@ class GroupController extends Controller
     {
         $group = new Group();
         $group->name = $request->name;
-        $group->status = $request->status ?? false;
+        $group->active = $request->active ?? false;
         $group->save();
         return $group;
     }
@@ -50,7 +50,7 @@ class GroupController extends Controller
     {
         $group = Group::find($id);
         $group->name = $request->name;
-        $group->status = $request->status;
+        $group->active  = $request->active;
         $group->save();
         return $group;
     }
@@ -72,7 +72,10 @@ class GroupController extends Controller
     {
         return GroupResource::collection(Group::paginate(env('PG')));
     }
-
+  public function getAllGroup()
+    {
+        return GroupResource::collection(Group::all());
+    }
     /**
      * @group Group
      *

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LocusGroup extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     public function locus()
     {
         return $this->belongsTo(Locus::class);

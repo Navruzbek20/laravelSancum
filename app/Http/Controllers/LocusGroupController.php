@@ -22,17 +22,28 @@ class LocusGroupController extends Controller
      *   "message": "Malumot saqlandi"
      * }
      */
-    public function create(Request $request)
+    public function createLocGroup(Request $request)
     {
-        $locus = $request->input('locus');
-        $group = $request->input('group');
-        $locusGroup = new LocusGroup();
-        $locusGroup->locus_id = $locus;
-        $locusGroup->group_id = $group;
-        $locusGroup->save();
-        return response()->json(['message' => 'Malumot saqlandi'], 201);
-    }
 
+        try {
+            $locusGroup = LocusGroup::create([
+                'locus_id' => $request->locus_id,
+                'group_id' => $request->group_id,
+            ]);
+
+            return response()->json([
+                'message' => 'Malumot saqlandi',
+                'data' => $locusGroup
+            ], 201);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => $e->getFile()
+            ], 500);
+        }
+    }
     /**
      * @group Locus-Group
      *
@@ -66,6 +77,7 @@ class LocusGroupController extends Controller
      */
     public function getLocusGroup()
     {
+
         return LocusGroupResource::collection(LocusGroup::paginate(env('PG')));
     }
 
@@ -122,7 +134,7 @@ class LocusGroupController extends Controller
      *   "message": "Malumot saqlandi"
      * }
      */
-    public function undate(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $locus = $request->input('locus');
         $group = $request->input('group');

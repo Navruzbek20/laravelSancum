@@ -30,12 +30,13 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::put('users/active/{id}', [UserController::class, 'setActive']);
     Route::post('image', [ImageController::class, 'createImage']);
 
-    Route::post('populations', [PopulationController::class, 'createPopulation']);
+    Route::post('populations_add', [PopulationController::class, 'createPopulation']);
     Route::put('populations/{id}', [PopulationController::class, 'updatePopulation']);
     Route::get('populations', [PopulationController::class, 'getPopulation']);
     Route::delete('populations/{id}', [PopulationController::class, 'deletePopulation']);
     Route::post('populations/{id}', [PopulationController::class, 'getPopulationById']);
     Route::put('populations/active/{id}', [PopulationController::class, 'setActive']);
+    Route::get('populations/getall', [PopulationController::class, 'getAllPopulation']);
 
     Route::post('locus',[LocusController::class, 'createLocus']);
     Route::put('locus/{id}',[LocusController::class, 'updateLocus']);
@@ -50,13 +51,15 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::delete('groups/{id}', [GroupController::class, 'deleteGroup']);
     Route::post('groups/{id}', [GroupController::class, 'getGroupById']);
     Route::put('groups/active/{id}', [GroupController::class, 'setActive']);
+    Route::get('groups/getall', [GroupController::class, 'getAllGroup']);
 
-    Route::post('locus_group', [LocusGroupController::class, 'create']);
-    Route::get('locus_group', [LocusGroupController::class, 'getLocusGroup']);
-    Route::get('locus_group/locus/{id}', [LocusGroupController::class, 'getLocusGroupByLocus']);
-    Route::get('locus_group/group/{id}', [LocusGroupController::class, 'getLocusGroupByGroup']);
-    Route::put('locus_group/{id}', [LocusGroupController::class, 'undate']);
-    Route::delete('locus_group/{id}', [LocusGroupController::class, 'delete']);
+    Route::get('locus/groups', [LocusGroupController::class, 'getLocusGroup']);
+    Route::get('locus/groups/locus/{id}', [LocusGroupController::class, 'getLocusGroupByLocus']);
+    Route::get('locus/groups/group/{id}', [LocusGroupController::class, 'getLocusGroupByGroup']);
+    Route::put('locus/groups/{id}', [LocusGroupController::class, 'update']);
+    Route::delete('locus/groups/{id}', [LocusGroupController::class, 'delete']);
+    Route::get('locus/getall', [LocusController::class, 'getAllLocus']);
+    Route::post('locus_groups', [LocusGroupController::class, 'createLocGroup']);
 
     Route::post('frequency',[FrequencyController::class, 'create']);
     Route::get('frequency', [FrequencyController::class, 'index']);

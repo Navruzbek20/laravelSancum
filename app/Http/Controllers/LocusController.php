@@ -25,6 +25,10 @@ class LocusController extends Controller
     {
         return LocusResource::collection(Locus::paginate(env('PG')));
     }
+    public function getAllLocus()
+    {
+        return LocusResource::collection(Locus::all());
+    }
 
     /**
      * @group Locus
@@ -62,7 +66,7 @@ class LocusController extends Controller
     {
         $locus = new Locus();
         $locus->name = $request->name;
-        $locus->status = $request->status ?? false;
+        $locus->active = $request->active ?? false;
         $locus->save();
         return $locus;
     }
@@ -86,7 +90,7 @@ class LocusController extends Controller
     {
         $locus = Locus::find($id);
         $locus->name = $request->name;
-        $locus->status = $request->status;
+        $locus->active = $request->active;
         $locus->save();
         return $locus;
     }
