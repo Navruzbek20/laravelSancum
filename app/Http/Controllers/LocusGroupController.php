@@ -136,11 +136,10 @@ class LocusGroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $locus = $request->input('locus');
-        $group = $request->input('group');
+
         $locusGroup = LocusGroup::find($id);
-        $locusGroup->locus_id = $locus;
-        $locusGroup->group_id = $group;
+        $locusGroup->locus_id = $request->get('locus_id');
+        $locusGroup->group_id = $request->get('group_id');
         $locusGroup->save();
         return response()->json(['message' => 'Malumot saqlandi'], 201);
     }

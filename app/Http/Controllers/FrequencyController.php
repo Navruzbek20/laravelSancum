@@ -56,8 +56,8 @@ class FrequencyController extends Controller
     {
         $frequency = Frequency::find($id);
 
-        $frequency->locus_id = $request->get('locus');
-        $frequency->population_id = $request->get('population');
+        $frequency->locus_id = $request->get('locus_id');
+        $frequency->population_id = $request->get('population_id');
         $frequency->symbol = $request->get('symbol');
         $frequency->alel_name = $request->get('alel_name');
         $frequency->frequency = $request->get('frequency');
