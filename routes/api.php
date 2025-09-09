@@ -8,10 +8,9 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LocusController;
 use App\Http\Controllers\LocusGroupController;
 use App\Http\Controllers\PopulationController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\RegionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Models\Code;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -74,6 +73,8 @@ Route::middleware("auth:sanctum")->group(function () {
 
     Route::post('genom_item',[GenomItemController::class,'storeFullGenomData']);
     Route::post('genom_item_doc',[GenomItemController::class,'storeFullGenomDocument']);
+
+    Route::get('regions',[RegionController::class, 'getRegion']);
 
 });
 
