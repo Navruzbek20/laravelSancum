@@ -143,4 +143,37 @@ class LocusGroupController extends Controller
         $locusGroup->save();
         return response()->json(['message' => 'Malumot saqlandi'], 201);
     }
+    public function setActive($id)
+    {
+        $group = LocusGroup::find($id);
+        $group->active = !$group->active;
+        $group->save();
+        return $group;
+    }
+    public function getAllLocusGroup()
+    {
+        return LocusGroupResource::collection(LocusGroup::all());
+    }
+    public function getLocusesByGroup($groupId)
+    {
+        try {
+            $locuses = \DB::table('locus_groups')
+                ->join('locuses', 'locus_groups.locus_id', '=', 'locuses.id')
+                ->select('locuses.id', 'locuses.name', 'locus_groups.active')
+                ->where('locus_groups.group_id', $groupId)
+                ->get();
+
+            return response()->json([
+                'success' => true,
+                'data' => $locuses
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Lokuslarni olishda xatolik',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+
+}
 }

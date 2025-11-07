@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
 \Fruitcake\Cors\HandleCors::class,
+\App\Http\Middleware\Cors::class,
 
 
     ];

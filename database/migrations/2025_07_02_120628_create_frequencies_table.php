@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('symbol');
             $table->string('alel_name');
             $table->double('frequency');
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
     }

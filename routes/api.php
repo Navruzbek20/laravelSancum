@@ -59,22 +59,30 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::delete('locus/groups/{id}', [LocusGroupController::class, 'delete']);
     Route::get('locus/getall', [LocusController::class, 'getAllLocus']);
     Route::post('locus_groups', [LocusGroupController::class, 'createLocGroup']);
+    Route::put('locus_groups/active/{id}', [LocusGroupController::class, 'setActive']);
+    Route::get('locusgroups/getall', [LocusGroupController::class, 'getAllLocusGroup']);
+    Route::get('locus/byidgroups/{id}', [LocusGroupController::class, 'getLocusesByGroup']);
 
     Route::post('frequency',[FrequencyController::class, 'create']);
     Route::get('frequency', [FrequencyController::class, 'index']);
     Route::get('frequency/{id}', [FrequencyController::class, 'show']);
     Route::put('frequency/{id}', [FrequencyController::class, 'update']);
     Route::delete('frequency/{id}', [FrequencyController::class, 'delete']);
+    Route::put('frequency/active/{id}', [FrequencyController::class, 'setActive']);
 
     Route::post('code',[CodeController::class, 'create']);
     Route::delete('code/{id}', [CodeController::class, 'delete']);
     Route::get('code', [CodeController::class, 'index']);
     Route::get('code/{id}', [CodeController::class, 'show']);
 
-    Route::post('genom_item',[GenomItemController::class,'storeFullGenomData']);
-    Route::post('genom_item_doc',[GenomItemController::class,'storeFullGenomDocument']);
+    Route::post('genoms',[GenomItemController::class,'create']);
+    Route::post('genoms_doc',[GenomItemController::class,'storeFullGenomDocument']);
+    Route::get('genoms',[GenomItemController::class,'index']);
+    Route::put('genoms/{id}',[GenomItemController::class,'update']);
 
     Route::get('regions',[RegionController::class, 'getRegion']);
+    Route::get('regions/{id}', [RegionController::class, 'getRegionById']);
+    Route::get('region_get_all', [RegionController::class, 'getAll']);
 
 });
 

@@ -13,5 +13,12 @@ class RegionController extends Controller
   public function getRegion(){
     return DistrictResource::collection(District::paginate(env('pg')));
   }
-
+  public function getRegionById($id){
+    $region = Region::findOrFail($id);
+    return DistrictResource::collection(District::where('region_id', $region->id)->get());
+    return new RegionResource(Region::findOrFail($id));
+  }
+  public function getAll(){
+    return RegionResource::collection(Region::all());
+  }
 }

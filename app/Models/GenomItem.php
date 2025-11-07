@@ -9,4 +9,7 @@ class GenomItem extends Model
 {
     use HasFactory;
     protected $guraded = [];
+    public function locus(){
+        return $this->belongsTo(Locus::class);
+    }
 }

@@ -5,23 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Genom extends Model
+class Person extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+   protected $guarded = [];
 
+   protected $table = 'persons';
     public function code()
 {
     return $this->belongsTo(Code::class, 'code_id');
-}
-
-public function items()
-{
-    return $this->hasMany(GenomItem::class);
-}
-
-public function person()
-{
-    return $this->hasOne(Person::class, 'code_id', 'code_id');
 }
 }

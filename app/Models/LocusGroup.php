@@ -18,4 +18,8 @@ class LocusGroup extends Model
     {
         return $this->belongsTo(Group::class);
     }
+    public function locuses()
+{
+    return $this->hasMany(Locus::class, 'locus_group_id');
+}
 }

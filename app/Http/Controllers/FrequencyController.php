@@ -128,4 +128,10 @@ class FrequencyController extends Controller
         $frequencies = FrequencyResource::collection(Frequency::paginate(env('PG')));
         return $frequencies;
     }
+    public function setActive($id){
+        $frequencies = Frequency::find($id);
+        $frequencies->active = !$frequencies->active;
+        $frequencies->save();
+        return $frequencies;
+    }
 }

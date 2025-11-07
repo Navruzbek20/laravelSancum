@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('locus_id');
             $table->bigInteger('group_id');
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
     }
